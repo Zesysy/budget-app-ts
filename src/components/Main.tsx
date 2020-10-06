@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Expenses from "./Expenses";
 import Income from "./Income";
 
 const Main = () => {
@@ -13,6 +14,10 @@ const Main = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
+  const calculate = () => {
+    setSaving(saving - value.expenses);
+  };
+
   return (
     <main className="container" style={{ flex: 1 }}>
       <div className="row justify-content-center text-center mt-4">
@@ -20,22 +25,26 @@ const Main = () => {
           <Income incomeName="Salary" incomeValue={value.income} />
         </div>
         <div className="col-lg-6">
-          <input
-            className="form-control"
-            name="expenses"
-            type="number"
-            placeholder="0"
-            onChange={handleChange}
-          ></input>
-          <button
-            type="button"
-            onClick={() => {
-              setSaving(saving - value.expenses);
-            }}
-            className="btn btn-light float-right mt-2"
-          >
-            Calculate
-          </button>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <Expenses
+                handleChange={handleChange}
+                expensiveName="Courses"
+                calculate={calculate}
+              />
+              <Expenses
+                handleChange={handleChange}
+                expensiveName="Coiffeur"
+                calculate={calculate}
+              />
+            </tbody>
+          </table>
         </div>
         <div className="col-lg-12">
           <Income incomeName="Saving" incomeValue={saving} />
