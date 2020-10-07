@@ -3,14 +3,14 @@ import React from "react";
 export interface Props {
   calculate: any;
   handleChange: any;
-  expensiveName: string;
+  expenseName: string;
 }
 
-const Expenses = ({ handleChange, expensiveName, calculate }: Props) => {
+const Expenses = ({ handleChange, expenseName, calculate }: Props) => {
   return (
     <>
       <tr>
-        <td className="align-middle">{expensiveName}</td>
+        <td className="align-middle">{expenseName}</td>
         <td>
           <input
             className="form-control text-right"
@@ -22,12 +22,15 @@ const Expenses = ({ handleChange, expensiveName, calculate }: Props) => {
           />
         </td>
         <td>
+          <button type="button" className="btn btn-light float-right">
+            <i className="fas fa-pencil-alt"></i>
+          </button>
           <button
             type="button"
             onClick={() => {
               calculate();
             }}
-            className="btn btn-light float-right"
+            className="btn btn-light float-right mr-1"
           >
             <i className="fas fa-plus"></i>
           </button>

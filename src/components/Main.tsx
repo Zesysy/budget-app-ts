@@ -35,12 +35,12 @@ const Main = () => {
             <tbody>
               <Expenses
                 handleChange={handleChange}
-                expensiveName="Courses"
+                expenseName="Courses"
                 calculate={calculate}
               />
               <Expenses
                 handleChange={handleChange}
-                expensiveName="Coiffeur"
+                expenseName="Coiffeur"
                 calculate={calculate}
               />
             </tbody>
