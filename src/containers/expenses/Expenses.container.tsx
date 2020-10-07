@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { kMaxLength } from "buffer";
+import React, { Fragment, useState } from "react";
 
 const Expenses = () => {
   const [expense, setExpense] = useState({
@@ -61,18 +62,31 @@ const Expenses = () => {
           <i className="fas fa-plus"></i>
         </button>
       </div>
-      <div className="row justify-content-center text-center mt-4">
-        {expenses.map((exp) =>
+      <div className="row text-center mt-4">
+        {expenses.map((exp, key) =>
           exp.name.length > 1 ? (
-            <p className="col-12">
-              {exp.name} : {exp.value}
-            </p>
+            <Fragment key={key}>
+              <p className="col-2 offset-4">
+                {exp.name} : {exp.value}
+              </p>
+              <div className="col-2 ">
+                <button type="button" className="btn btn-light float-right">
+                  <i className="far fa-trash-alt"></i>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-light float-right mr-1"
+                >
+                  <i className="fas fa-pencil-alt"></i>
+                </button>
+              </div>
+            </Fragment>
           ) : null
         )}
       </div>
       <hr className="col-6" />
       <div className="row justify-content-center text-center mt-4">
-        <p className="col-12">= {sumExpense}</p>
+        <p className="col-12">All fixed expenses = {sumExpense}</p>
       </div>
     </main>
   );
